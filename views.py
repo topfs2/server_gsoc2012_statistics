@@ -51,3 +51,19 @@ class EpisodeRoot(MediaRoot):
 class EpisodeInstance(MediaInstance):
 	def __init__(self):
 		super(EpisodeInstance, self).__init__("episode")
+
+class MovieRoot(MediaRoot):
+	def __init__(self):
+		super(MovieRoot, self).__init__("movie")
+
+class MovieInstance(MediaInstance):
+	def __init__(self):
+		super(MovieInstance, self).__init__("movie")
+
+class VideoFileRoot(MediaRoot):
+	def __init__(self):
+		super(VideoFileRoot, self).__init__("video-file")
+
+class VideoFileInstance(MediaInstance):
+	def __init__(self):
+		super(VideoFileInstance, self).__init__("video-file")
