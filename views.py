@@ -13,16 +13,23 @@ import uuid
 def create_instance_link(instance, db, key):
 	return reverse(instance + '-instance', args=[key])
 
-class EpisodeRoot(View):
+class MediaRoot(View):
+	def __init__(self, media):
+		super(MediaRoot, self).__init__()
+		self.media = media
+
 	def get(self, request):
-		db = database.get_or_create("episodes")
+		db = database.get_or_create(self.media)
 
-		return [create_instance_link("episode", db, key) for key in db]
+		return [create_instance_link(self.media, db, key) for key in db]
 
-class EpisodeInstance(View):
+class MediaInstance(View):
+	def __init__(self, media):
+		super(MediaInstance, self).__init__()
+		self.media = media
 
 	def get(self, request, key):
-		db = database.get_or_create("episodes")
+		db = database.get_or_create(self.media)
 
 		if key not in db:
 			return Response(status.HTTP_404_NOT_FOUND)
@@ -30,9 +37,17 @@ class EpisodeInstance(View):
 			return db[key]
 
 	def delete(self, request, key):
-		db = database.get_or_create("episodes")
+		db = database.get_or_create(self.media)
 		if key not in db:
 			return Response(status.HTTP_404_NOT_FOUND)
 		else:
 			del db[key]
 			return True
+
+class EpisodeRoot(MediaRoot):
+	def __init__(self):
+		super(EpisodeRoot, self).__init__("episode")
+
+class EpisodeInstance(MediaInstance):
+	def __init__(self):
+		super(EpisodeInstance, self).__init__("episode")
