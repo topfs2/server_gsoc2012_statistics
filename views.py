@@ -23,6 +23,14 @@ class MediaRoot(View):
 
 		return [create_instance_link(self.media, db, key) for key in db]
 
+	def post(self, request):
+		db = database.get_or_create(self.media)
+
+		for m in self.CONTENT:
+			db.save(m)
+
+		return Response(status.HTTP_201_CREATED)
+
 class MediaInstance(View):
 	def __init__(self, media):
 		super(MediaInstance, self).__init__()
