@@ -13,6 +13,10 @@ import uuid
 def create_instance_link(instance, db, key):
 	return reverse(instance + '-instance', args=[key])
 
+class Active(View):
+	def get(self, request):
+		return True
+
 class MediaRoot(View):
 	def __init__(self, media):
 		super(MediaRoot, self).__init__()

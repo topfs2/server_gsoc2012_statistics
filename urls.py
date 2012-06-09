@@ -1,8 +1,9 @@
 from django.conf.urls.defaults import patterns, url
 from djangorestframework.views import ListOrCreateModelView, InstanceModelView
-from views import EpisodeRoot, EpisodeInstance, MovieRoot, MovieInstance, VideoFileRoot, VideoFileInstance
+from views import Active, EpisodeRoot, EpisodeInstance, MovieRoot, MovieInstance, VideoFileRoot, VideoFileInstance
 
 urlpatterns = patterns('',
+	url(r'^active$', Active.as_view()),	
 	url(r'^episodes$', EpisodeRoot.as_view(), name='episodes-root'),
 	url(r'^episode/([a-fA-F0-9]+)$', EpisodeInstance.as_view(), name='episode-instance'),
 	url(r'^movies$', MovieRoot.as_view(), name='movies-root'),
