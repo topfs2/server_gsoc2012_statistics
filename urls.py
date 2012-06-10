@@ -10,6 +10,6 @@ urlpatterns = patterns('',
 	url(r'^movie/([a-fA-F0-9]+)$', MovieInstance.as_view(), name='movie-instance'),
 	url(r'^musicvideos$', MusicVideoRoot.as_view(), name='music-videos-root'),
 	url(r'^musicvideo/([a-fA-F0-9]+)$', MusicVideoInstance.as_view(), name='music-video-instance'),
-	url(r'^videofiles$', VideoFileRoot.as_view(), name='video-file-root'),
+	url(r'^videofiles$', VideoFileRoot.as_view(), name='video-files-root'),
 	url(r'^videofile/([a-fA-F0-9]+)$', VideoFileInstance.as_view(), name='video-file-instance'),
 )
