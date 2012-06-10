@@ -9,6 +9,8 @@ from djangorestframework import status
 
 import database
 import uuid
+import hashlib
+import json
 
 def create_instance_link(instance, db, key):
 	return reverse(instance + '-instance', args=[key])
@@ -31,7 +33,9 @@ class MediaRoot(View):
 		db = database.get_or_create(self.media)
 
 		for m in self.CONTENT:
-			db.save(m)
+			ID = hashlib.sha256(json.dumps(m)).hexdigest()
+			if ID not in db:
+				db[ID] = m
 
 		return Response(status.HTTP_201_CREATED)
 
