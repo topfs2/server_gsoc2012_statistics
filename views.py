@@ -72,6 +72,14 @@ class MovieInstance(MediaInstance):
 	def __init__(self):
 		super(MovieInstance, self).__init__("movie")
 
+class MusicVideoRoot(MediaRoot):
+	def __init__(self):
+		super(MusicVideoRoot, self).__init__("music-video")
+
+class MusicVideoInstance(MediaInstance):
+	def __init__(self):
+		super(MusicVideoInstance, self).__init__("music-video")
+
 class VideoFileRoot(MediaRoot):
 	def __init__(self):
 		super(VideoFileRoot, self).__init__("video-file")
