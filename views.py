@@ -20,6 +20,8 @@ class Active(View):
 		return True
 
 class MediaRoot(View):
+	renderers = [ JSONRenderer ]
+
 	def __init__(self, media):
 		super(MediaRoot, self).__init__()
 		self.media = media
@@ -35,6 +37,8 @@ class MediaRoot(View):
 		return Response(status.HTTP_201_CREATED)
 
 class MediaInstance(View):
+	renderers = [ JSONRenderer ]
+
 	def __init__(self, media):
 		super(MediaInstance, self).__init__()
 		self.media = media
