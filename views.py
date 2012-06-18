@@ -24,11 +24,6 @@ class MediaRoot(View):
 		super(MediaRoot, self).__init__()
 		self.media = media
 
-	def get(self, request):
-		db = database.get_or_create(self.media)
-
-		return [create_instance_link(self.media, db, key) for key in db]
-
 	def post(self, request):
 		db = database.get_or_create(self.media)
 
@@ -43,14 +38,6 @@ class MediaInstance(View):
 	def __init__(self, media):
 		super(MediaInstance, self).__init__()
 		self.media = media
-
-	def get(self, request, key):
-		db = database.get_or_create(self.media)
-
-		if key not in db:
-			return Response(status.HTTP_404_NOT_FOUND)
-		else:
-			return db[key]
 
 	def delete(self, request, key):
 		db = database.get_or_create(self.media)
